@@ -16,6 +16,14 @@ class MailFormTest < ActiveSupport::TestCase
       assert_nil sample.send("#{attr}")
     end
 
+    test "can query presence of #{attr} with #{attr}?" do
+      sample = SampleMail.new
+      assert !sample.send("#{attr}?")
+      sample.send("#{attr}=", 'value')
+      assert sample.send("#{attr}?")
+    end
+
+
   end
 
 
