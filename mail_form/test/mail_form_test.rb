@@ -8,5 +8,15 @@ class MailFormTest < ActiveSupport::TestCase
       sample.send("#{attr}=", 'value')
       assert_equal('value', sample.send("#{attr}"))
     end
+
+    test "can clear #{attr} with clear_#{attr}" do
+      sample = SampleMail.new
+      sample.send("#{attr}=", 'value')
+      sample.send "clear_#{attr}"
+      assert_nil sample.send("#{attr}")
+    end
+
   end
+
+
 end
