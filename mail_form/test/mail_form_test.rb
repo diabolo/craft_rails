@@ -23,8 +23,13 @@ class MailFormTest < ActiveSupport::TestCase
       assert sample.send("#{attr}?")
     end
 
-
   end
 
+  test "delivers an email with attributes" do
+    sample = SampleMail.new
+    sample.email = 'user@example.com'
+    sample.deliver
+    assert_equal 1, ActionMailer::Base.deliveries.size
+  end
 
 end
